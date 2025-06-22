@@ -23,7 +23,18 @@ export default function Search() {
 		},
 	});
 
-	const [addressById, setAddressById] = useState<IAddressCard>();
+	const addressInitialState = {
+		id: null,
+		republic: "",
+		region: "",
+		city: "",
+		street: "",
+		house: "",
+		room: "",
+		isActive: false,
+	};
+
+	const [addressById, setAddressById] = useState<IAddressCard>(addressInitialState);
 
 	const baseUrl = "https://localhost:7047";
 	const router = useRouter();
@@ -56,23 +67,17 @@ export default function Search() {
 				<form className={styles.searchFormWrap} onSubmit={handleSubmit(onSubmit)}>
 					<div className={styles.searchFormContainer}>
 						<div className={styles.inputWrap}>
-							<label>AddressId</label>
+							<label>идентификатор</label>
 							<Controller
 								name="id"
 								control={control}
 								defaultValue=""
 								render={({ field }) => (
-									<input
-										className={styles.input}
-										id="id"
-										type={InputTypeList.Text}
-										placeholder="addressId"
-										{...field}
-									/>
+									<input className={styles.input} id="id" type={InputTypeList.Text} placeholder="Id" {...field} />
 								)}
 							/>
 						</div>
-						<button className={styles.searchButton}>Найти по addressId</button>
+						<button className={styles.searchButton}>Найти адрес по Id</button>
 					</div>
 				</form>
 				<div className={styles.addressDataWrapper}>

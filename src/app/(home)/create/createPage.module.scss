@@ -1,0 +1,54 @@
+.createPageContainer{
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+}
+.createFormWrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-inline: auto;
+    gap: 20px;
+    width: 450px;
+    height: 300px;
+    background-color: var(--color-silver-gray);
+    border-radius: 12px;
+    border: 1px solid black
+}
+
+.createFormContainer {
+    width: 80%;
+    padding: 52px 0;
+}
+
+.inputWrap {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.input {
+    height: 36px;
+    border-radius: 6px;
+}
+
+.createButton {
+    width: 100%;
+    height: 52px;
+    background: var(--color-jasmine);
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: large;
+    cursor: pointer;
+}
+
+.responseContainer{
+    margin-inline: auto;
+    width: 60%;
+}
+
+.responseTitle{
+    text-align: center;
+    margin-bottom: 20px;
+}
