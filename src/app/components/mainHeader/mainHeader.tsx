@@ -9,6 +9,9 @@ export default function MainHeader() {
 				<Link className={styles.navigationLink} href={MainPath.Main}>
 					<p className={styles.navigationLink__text}>Главная</p>
 				</Link>
+				<Link className={styles.navigationLink} href={MainPath.Create}>
+					<p className={styles.navigationLink__text}>Создать</p>
+				</Link>
 				<Link className={styles.navigationLink} href={MainPath.Search}>
 					<p className={styles.navigationLink__text}>Поиск</p>
 				</Link>
