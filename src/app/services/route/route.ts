@@ -3,4 +3,5 @@ export enum MainPath {
 	Search = "/search",
 	About = "/about",
 	Addresses = "/addresses",
+	ServerError = "/error",
 }

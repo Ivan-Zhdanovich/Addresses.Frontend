@@ -4,7 +4,7 @@ import styles from "./service.module.scss";
 
 export default function Service() {
 	return (
-		<div>
+		<div className={styles.mainPageContainer}>
 			<h1>Ваш почтовый адрес - дальше мы сами.</h1>
 			<Image src={mailbox} alt={"почтовый ящик"} />
 		</div>
