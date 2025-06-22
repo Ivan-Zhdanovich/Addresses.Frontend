@@ -1,42 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+body,
+button {
+	font-family: "Rubik", Verdana, Arial, Tahoma, sans-serif;
+	font-weight: 400;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+	--color-pure-light: #ffffff;
+	--color-light-grayish-blue: #f1f1f2;
+	--color-light-spring-green: #dae7de;
+	--color-rose-white: #fbe9ed;
+	--color-jasmine: #ffde82;
+	--color-light-silver: #d9d9d9;
+	--color-cambridge-blue: #a3c0bb;
+	--color-gainsboro: #dcdddd;
+	--color-star-dust: #9c9d9d;
+	--color-ash-grey: #bbbbbb;
+	--color-black-light: #ffffff1a;
+	--color-dark-cyan-blue: #434546;
+	--color-very-dark-sea-green: #7cab8d;
+	--color-black-light: #ffffff1a;
+	--color-pure-black: #000;
 }
