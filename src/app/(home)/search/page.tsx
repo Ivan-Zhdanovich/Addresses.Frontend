@@ -19,7 +19,7 @@ export default function Search() {
 		handleSubmit,
 	} = useForm<ISearchByIdForm>({
 		defaultValues: {
-			id: "",
+			id: 0,
 		},
 	});
 
@@ -71,13 +71,15 @@ export default function Search() {
 							<Controller
 								name="id"
 								control={control}
-								defaultValue=""
+								defaultValue={0}
 								render={({ field }) => (
 									<input className={styles.input} id="id" type={InputTypeList.Text} placeholder="Id" {...field} />
 								)}
 							/>
 						</div>
-						<button className={styles.searchButton}>Найти адрес по Id</button>
+						<button className={styles.searchButton} type="submit">
+							Найти адрес по Id
+						</button>
 					</div>
 				</form>
 				<div className={styles.addressDataWrapper}>

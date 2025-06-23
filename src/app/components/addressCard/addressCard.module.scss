@@ -7,7 +7,7 @@
 } 
 
 .addressCardData {
-   width: 40%;
+  width: 40%;
   text-align: center;
   padding-top: 10px;
   background-color: var(----color-light-spring-green);
@@ -16,4 +16,13 @@
     &:first-child {
     width: 27%;
   }
+}
+
+.buttonsContainer {
+ width: 20px;
+ height: 20px;
+}
+
+.button {
+  cursor: pointer;
 }

@@ -5,15 +5,22 @@ import { Key, useCallback, useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { GetAllAddresses } from "@/services/api/GetAllAddresses";
 import { MainPath } from "@/app/services/route/route";
-import { IAddressCard } from "../../types/common/ComponentProps";
+import { IAddressCard, IEditRoomForm } from "../../types/common/ComponentProps";
 import { AddressCard } from "../../components/addressCard/addressCard";
 
 import styles from "./addressesPage.module.scss";
 import { DeleteAddressById } from "@/services/api/DeleteAddressById";
+import { EditAddressById } from "@/services/api/EditAddressById";
+import { AddressCardEditRoom } from "@/app/components/addressCardEditRoom/addressCardEditRoom";
 
 export default function Addresses() {
 	const [addresses, setAddresses] = useState<IAddressCard[]>([]);
 	const [isAddressDeleted, setAddressIsDeleted] = useState<boolean>(false);
+	const [isAddressReadyForEdit, setAddressIsReadyForEdit] = useState<boolean>(false);
+	const idInitialState = 0;
+	const [addressIdForEdit, setAddressIdForEdit] = useState<number>(idInitialState);
+
+	const [isAddressEdited, setAddressIsEdited] = useState<boolean>(false);
 
 	const router = useRouter();
 	const baseUrl = "https://localhost:7047";
@@ -27,6 +34,31 @@ export default function Addresses() {
 				if (response !== null && response.status === axios.HttpStatusCode.NoContent) {
 					setAddressIsDeleted(true);
 					setTimeout(() => setAddressIsDeleted(false), interval);
+				}
+			}
+		} catch (error) {
+			if (
+				axios.isAxiosError(error) &&
+				error.response &&
+				error.response.status &&
+				error.response.status === axios.HttpStatusCode.InternalServerError
+			) {
+				router.push(MainPath.ServerError);
+			}
+			console.log(error);
+		}
+	};
+
+	const EditAddress = async (id: number, data: IEditRoomForm) => {
+		setAddressIsReadyForEdit(true);
+		try {
+			if (baseUrl && id !== null) {
+				const response: AxiosResponse<IAddressCard> = await EditAddressById(baseUrl, id, data);
+
+				if (response !== null && response.status === axios.HttpStatusCode.Ok) {
+					setAddressIsReadyForEdit(false);
+					setAddressIsEdited(true);
+					setTimeout(() => setAddressIsEdited(false), interval);
 				}
 			}
 		} catch (error) {
@@ -64,10 +96,10 @@ export default function Addresses() {
 
 	useEffect(() => {
 		getAddresses();
-		if (isAddressDeleted) {
+		if (isAddressDeleted || isAddressEdited) {
 			getAddresses();
 		}
-	}, [getAddresses, isAddressDeleted]);
+	}, [getAddresses, isAddressDeleted, isAddressEdited]);
 
 	return (
 		<div className={styles.addressesWrap}>
@@ -81,7 +113,7 @@ export default function Addresses() {
 						<p className={styles.addressesDataColumnsTitle}>Город</p>
 						<p className={styles.addressesDataColumnsTitle}>Улица</p>
 						<p className={styles.addressesDataColumnsTitle}>Дом</p>
-						<p className={styles.addressesDataColumnsTitle}>Комната</p>
+						<p className={styles.addressesDataColumnsTitle}>Кабинет</p>
 					</div>
 					{addresses &&
 						addresses.map((addressData: IAddressCard, index: Key) => (
@@ -96,10 +128,15 @@ export default function Addresses() {
 									room={addressData.room}
 									isActive={addressData.isActive}
 									onDeleteClick={() => RemoveAddress(addressData.id!)}
+									onEditClick={() => [setAddressIdForEdit(addressData.id!), setAddressIsReadyForEdit(true)]}
 								/>
 							</ol>
 						))}
 					{isAddressDeleted && <p>Адрес успешно удалён</p>}
+					{isAddressEdited && <p>Адрес успешно изменён</p>}
+					{isAddressReadyForEdit && (
+						<AddressCardEditRoom id={addressIdForEdit} request={EditAddress} open={isAddressReadyForEdit} />
+					)}
 				</div>
 			</div>
 		</div>
