@@ -28,5 +28,15 @@
   &__text {
     color: var(--color-pure-black);
     font-size: x-large;
+
+      @media (max-width: 960px) {
+        & {
+          font-size: large;
+        }
+      }
+
+      @media (max-width: 600px) {
+        font-size: medium;
+      }
   }
 }

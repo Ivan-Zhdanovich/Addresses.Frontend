@@ -23,18 +23,7 @@ export default function Search() {
 		},
 	});
 
-	const addressInitialState = {
-		id: null,
-		republic: "",
-		region: "",
-		city: "",
-		street: "",
-		house: "",
-		room: "",
-		isActive: false,
-	};
-
-	const [addressById, setAddressById] = useState<IAddressCard>(addressInitialState);
+	const [addressById, setAddressById] = useState<IAddressCard | null>(null);
 
 	const baseUrl = "https://localhost:7047";
 	const router = useRouter();

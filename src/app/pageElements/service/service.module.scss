@@ -1,3 +1,25 @@
+.mainPageWrap {
+    width: 100%;
+    height: calc(100vh - 50px);
+    margin: 0 auto;
+}
+
 .mainPageContainer {
     display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    
+}
+.mainTitleWrap {
+    width: 36%;
+    margin-left: 20px;
+}
+.subTitle {
+    padding-top: 20px;
+}
+.mainPicture {
+	width: 452px;
+	height: 480px;
+    border: 1px solid var(--color-very-dark-sea-green);
+    border-radius: 20px;
 }
