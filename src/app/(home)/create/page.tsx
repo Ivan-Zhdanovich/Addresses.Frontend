@@ -90,7 +90,9 @@ export default function Create() {
 								)}
 							/>
 						</div>
-						<button className={styles.createButton}>Создать адрес</button>
+						<button className={styles.createButton} type="submit">
+							Создать адрес
+						</button>
 					</div>
 				</form>
 				<div className={styles.responseContainer}>

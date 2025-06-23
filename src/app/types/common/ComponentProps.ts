@@ -7,7 +7,8 @@ export interface IAddressCard {
 	house: string;
 	room: string;
 	isActive: boolean;
-	onDeleteClick?: (id: number) => Promise<void>;
+	onDeleteClick?: () => Promise<void>;
+	onEditClick?: () => [void, void];
 }
 
 export interface IAddressCreate {
@@ -18,4 +19,14 @@ export interface IAddressCreate {
 	house: string;
 	room: string;
 	isActive: boolean;
+}
+
+export interface IEditRoomForm {
+	room: string;
+}
+
+export interface IAddressCardEditRoom {
+	id: number;
+	request: (id: number, data: IEditRoomForm) => Promise<void>;
+	open: boolean;
 }

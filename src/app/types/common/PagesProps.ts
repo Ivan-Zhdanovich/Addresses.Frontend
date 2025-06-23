@@ -1,5 +1,5 @@
 export interface ISearchByIdForm {
-	id: string;
+	id: number;
 }
 
 export interface ICreateForm {
