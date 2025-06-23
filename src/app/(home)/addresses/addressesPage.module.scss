@@ -7,14 +7,10 @@
   margin-inline: auto;
   width: 90%;
 
-//   &__title {
-//     text-align: center;
-//   }
-
-//   &__subtitle {
-//     text-align: center;
-//     margin: 20px 0;
-//   }
+  &__title {
+    text-align: center;
+    padding: 10px 0;
+  }
 }
 
 .addressesData {
@@ -50,4 +46,10 @@ width: 90%;
   &:last-child {
     border-right: none;
   }
+}
+
+.successStatus {
+  font-size: x-large;
+  text-align: center;
+  color: var(--color-very-dark-sea-green);
 }

@@ -132,8 +132,8 @@ export default function Addresses() {
 								/>
 							</ol>
 						))}
-					{isAddressDeleted && <p>Адрес успешно удалён</p>}
-					{isAddressEdited && <p>Адрес успешно изменён</p>}
+					{isAddressDeleted && <p className={styles.successStatus}>Адрес успешно удалён</p>}
+					{isAddressEdited && <p className={styles.successStatus}>Адрес успешно изменён</p>}
 					{isAddressReadyForEdit && (
 						<AddressCardEditRoom id={addressIdForEdit} request={EditAddress} open={isAddressReadyForEdit} />
 					)}
