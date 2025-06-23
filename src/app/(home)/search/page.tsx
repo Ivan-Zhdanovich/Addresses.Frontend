@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { GetAddressById } from "@/services/api/GetAddressById";
 import { MainPath } from "@/app/services/route/route";
-import AddressCard from "@/app/components/addressCard/addressCard";
+import { AddressCard } from "@/app/components/addressCard/addressCard";
 import styles from "./searchPage.module.scss";
 
 export default function Search() {

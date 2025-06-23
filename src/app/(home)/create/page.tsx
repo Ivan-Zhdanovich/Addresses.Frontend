@@ -76,6 +76,7 @@ export default function Create() {
 	return (
 		<div className={styles.createPageWrap}>
 			<div className={styles.createPageContainer}>
+				<div>&#10006;</div>
 				<form className={styles.createFormWrap} onSubmit={handleSubmit(onSubmit)}>
 					<div className={styles.createFormContainer}>
 						<div className={styles.inputWrap}>

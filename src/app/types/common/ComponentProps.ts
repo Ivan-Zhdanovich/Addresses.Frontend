@@ -7,6 +7,7 @@ export interface IAddressCard {
 	house: string;
 	room: string;
 	isActive: boolean;
+	onDeleteClick?: (id: number) => Promise<void>;
 }
 
 export interface IAddressCreate {
