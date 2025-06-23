@@ -6,15 +6,41 @@ import axios, { AxiosResponse } from "axios";
 import { GetAllAddresses } from "@/services/api/GetAllAddresses";
 import { MainPath } from "@/app/services/route/route";
 import { IAddressCard } from "../../types/common/ComponentProps";
-import AddressCard from "@/app/components/addressCard/addressCard";
+import { AddressCard } from "../../components/addressCard/addressCard";
 
 import styles from "./addressesPage.module.scss";
+import { DeleteAddressById } from "@/services/api/DeleteAddressById";
 
 export default function Addresses() {
 	const [addresses, setAddresses] = useState<IAddressCard[]>([]);
+	const [isAddressDeleted, setAddressIsDeleted] = useState<boolean>(false);
 
 	const router = useRouter();
 	const baseUrl = "https://localhost:7047";
+	const interval = 5000;
+
+	const RemoveAddress = async (id: number) => {
+		try {
+			if (baseUrl && id !== null) {
+				const response: AxiosResponse<IAddressCard> = await DeleteAddressById(baseUrl, id);
+
+				if (response !== null && response.status === axios.HttpStatusCode.NoContent) {
+					setAddressIsDeleted(true);
+					setTimeout(() => setAddressIsDeleted(false), interval);
+				}
+			}
+		} catch (error) {
+			if (
+				axios.isAxiosError(error) &&
+				error.response &&
+				error.response.status &&
+				error.response.status === axios.HttpStatusCode.InternalServerError
+			) {
+				router.push(MainPath.ServerError);
+			}
+			console.log(error);
+		}
+	};
 
 	const getAddresses = useCallback(async () => {
 		try {
@@ -38,7 +64,10 @@ export default function Addresses() {
 
 	useEffect(() => {
 		getAddresses();
-	}, [getAddresses]);
+		if (isAddressDeleted) {
+			getAddresses();
+		}
+	}, [getAddresses, isAddressDeleted]);
 
 	return (
 		<div className={styles.addressesWrap}>
@@ -66,9 +95,11 @@ export default function Addresses() {
 									house={addressData.house}
 									room={addressData.room}
 									isActive={addressData.isActive}
+									onDeleteClick={() => RemoveAddress(addressData.id!)}
 								/>
 							</ol>
 						))}
+					{isAddressDeleted && <p>Адрес успешно удалён</p>}
 				</div>
 			</div>
 		</div>
